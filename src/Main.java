@@ -47,12 +47,12 @@ public class Main {
 
         while (true) {
             try {
+                if (optionSelected == 0) break;
                 // Se muestra las opciones para realizar un calculo artimetico
                 optionSelected = optionsBanner();
 
                 //Implementacion de la clase calculadora
                 Calculadora calculadora = new Calculadora();
-                if (optionSelected == 0) break;
 
                 // Se valida la opcion seleccionada
                 // En base a la opcion seleccionada, se realiza el calculo
