@@ -2,8 +2,18 @@ package helpers;
 
 import java.util.Scanner;
 
+/**
+ * Clase que implementa el uso del Scanner con su respectivas validaciones
+ */
 public class HandleScanner {
 
+    /**
+     * @param customMessage String
+     * @return int
+     * @name getInt
+     * @description Metodo estatico, que implementa validaciones a nivel de consola para los valores que
+     * ingresa los usuario, si dicho valor no es del tipo solicitado, se solicita nuevamente
+     */
     public static int getInt(String customMessage) {
         Scanner sc = new Scanner(System.in);
         do {
@@ -22,6 +32,13 @@ public class HandleScanner {
         } while (true);
     }
 
+    /**
+     * @param customMessage String
+     * @return double
+     * @name getDouble
+     * @description Metodo estatico, que implementa validaciones a nivel de consola para los valores que
+     * ingresa los usuario, si dicho valor no es del tipo solicitado, se solicita nuevamente
+     */
     public static double getDouble(String customMessage) {
         Scanner sc = new Scanner(System.in);
         do {
