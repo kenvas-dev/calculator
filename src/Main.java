@@ -1,3 +1,5 @@
+import helpers.HandleSanner;
+
 import java.util.Scanner;
 
 public class Main {
@@ -16,6 +18,12 @@ public class Main {
      * del menu de operaciones
      */
     private static int optionSelected = 0;
+
+    /**
+     * Propiedad privada que asigna el valor de la opcion seleccionada,
+     * del menu de continuar
+     */
+    private static int optionSelectedContinue = 0;
 
     /**
      * Propiedad privada que delimita continuar o no en las
@@ -47,16 +55,19 @@ public class Main {
 
         while (true) {
             try {
-                if (optionSelected == 0) break;
                 // Se muestra las opciones para realizar un calculo artimetico
                 optionSelected = optionsBanner();
+                if (optionSelected == minOptionSelected) {
+                    CustomMessage.outln(new String[]{"Gracias por usar mi calculadora :D "});
+                    break;
+                }
 
                 //Implementacion de la clase calculadora
                 Calculadora calculadora = new Calculadora();
 
                 // Se valida la opcion seleccionada
                 // En base a la opcion seleccionada, se realiza el calculo
-                while (optionSelected > minOptionSelected && optionSelected <= maxOptionSelected && hasContinue) {
+                while ((optionSelected > minOptionSelected && optionSelected <= maxOptionSelected) && hasContinue && (optionSelectedContinue >= 0 && optionSelectedContinue <= 1)) {
                     switch (optionSelected) {
                         case 1:
                             CustomMessage.outln(new String[]{"El resultado es: " + calculadora.suma()});
@@ -81,8 +92,23 @@ public class Main {
 
                     // Se consulta al ususario si desea continuar
                     optionsContinue();
-                    if (hasContinue)
+                    while (optionSelectedContinue < 0 || optionSelectedContinue > 1) {
+                        optionsContinue();
+
+                    }
+                    if (hasContinue) {
                         optionSelected = optionsBanner();
+
+                        if (optionSelected == minOptionSelected) {
+                            hasContinue = false;
+                            break;
+                        }
+                    }
+                    if (!hasContinue) break;
+                }
+                if (!hasContinue) {
+                    CustomMessage.outln(new String[]{"Gracias por usar mi calculadora :D "});
+                    break;
                 }
             } catch (Exception e) {
 
@@ -108,9 +134,9 @@ public class Main {
     private static int optionsBanner() {
         CustomMessage.outln(new String[]{"Selecciona una opcion del menu"});
         CustomMessage.outln(new String[]{"1). Suma", "2). Resta", "3). Multiplicacion", "4). Division", "5). Potencia", "6). Raiz cuadrada", "0). Finalizar"});
-        String value = sc.nextLine();
+        int value = HandleSanner.getInt("El rango de opciones desde: 0 hasta: 6");
         try {
-            return Integer.parseInt(value);
+            return value;
         } catch (Exception e) {
             return 0;
         }
@@ -124,8 +150,9 @@ public class Main {
     private static void optionsContinue() {
         CustomMessage.outln(new String[]{"Desea continuar?"});
         CustomMessage.outln(new String[]{"1). Si", "0). No",});
-        int option = sc.nextInt();
-        if (option != 1) {
+        int option = HandleSanner.getInt("El rango de opciones desde: 0 hasta: 1");
+        optionSelectedContinue = option;
+        if (option == 0) {
             hasContinue = false;
         }
     }
