@@ -1,4 +1,4 @@
-import helpers.HandleSanner;
+import helpers.HandleScanner;
 
 import java.util.Scanner;
 
@@ -134,11 +134,11 @@ public class Calculadora {
     public void getParameters(String operation, boolean hasMultipleOperation) {
         CustomMessage.outln(new String[]{lblOption + operation});
         CustomMessage.outln(new String[]{lblNumber1});
-        double number1 = HandleSanner.getDouble("");
+        double number1 = HandleScanner.getDouble("");
         this.number1.setNumero(number1);
         if (hasMultipleOperation) {
             CustomMessage.outln(new String[]{lblNumber2});
-            double number2 = HandleSanner.getDouble("");
+            double number2 = HandleScanner.getDouble("");
             this.number2.setNumero(number2);
         }
     }

@@ -2,7 +2,7 @@ package helpers;
 
 import java.util.Scanner;
 
-public class HandleSanner {
+public class HandleScanner {
 
     public static int getInt(String customMessage) {
         Scanner sc = new Scanner(System.in);

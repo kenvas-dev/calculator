@@ -1,4 +1,4 @@
-import helpers.HandleSanner;
+import helpers.HandleScanner;
 
 import java.util.Scanner;
 
@@ -134,7 +134,7 @@ public class Main {
     private static int optionsBanner() {
         CustomMessage.outln(new String[]{"Selecciona una opcion del menu"});
         CustomMessage.outln(new String[]{"1). Suma", "2). Resta", "3). Multiplicacion", "4). Division", "5). Potencia", "6). Raiz cuadrada", "0). Finalizar"});
-        int value = HandleSanner.getInt("El rango de opciones desde: 0 hasta: 6");
+        int value = HandleScanner.getInt("El rango de opciones desde: 0 hasta: 6");
         try {
             return value;
         } catch (Exception e) {
@@ -150,7 +150,7 @@ public class Main {
     private static void optionsContinue() {
         CustomMessage.outln(new String[]{"Desea continuar?"});
         CustomMessage.outln(new String[]{"1). Si", "0). No",});
-        int option = HandleSanner.getInt("El rango de opciones desde: 0 hasta: 1");
+        int option = HandleScanner.getInt("El rango de opciones desde: 0 hasta: 1");
         optionSelectedContinue = option;
         if (option == 0) {
             hasContinue = false;
